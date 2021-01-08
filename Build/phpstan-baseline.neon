@@ -1,0 +1,112 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Cannot call method fetchAll\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\Statement\\|int\\.$#"
+			count: 1
+			path: ../Classes/Domain/Repository/TagRepository.php
+
+		-
+			message: "#^Cannot call method fetch\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\Statement\\|int\\.$#"
+			count: 1
+			path: ../Classes/Hooks/DataHandlerHook.php
+
+		-
+			message: "#^Cannot call method fetchAll\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\Statement\\|int\\.$#"
+			count: 1
+			path: ../Classes/Routing/Aspect/StaticDatabaseMapper.php
+
+		-
+			message: "#^Cannot call method count\\(\\) on array\\|TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface\\.$#"
+			count: 1
+			path: ../Classes/Service/CommentService.php
+
+		-
+			message: "#^Cannot call method fetchAll\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\Statement\\|int\\.$#"
+			count: 1
+			path: ../Classes/Service/SetupService.php
+
+		-
+			message: "#^Cannot call method fetchColumn\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\Statement\\|int\\.$#"
+			count: 1
+			path: ../Classes/Service/SetupService.php
+
+		-
+			message: "#^Cannot call method fetch\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\Statement\\|int\\.$#"
+			count: 2
+			path: ../Classes/Service/SetupService.php
+
+		-
+			message: "#^Cannot call method fetchColumn\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\Statement\\|int\\.$#"
+			count: 1
+			path: ../Classes/Updates/AuthorSlugUpdate.php
+
+		-
+			message: "#^Cannot call method fetch\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\Statement\\|int\\.$#"
+			count: 1
+			path: ../Classes/Updates/AuthorSlugUpdate.php
+
+		-
+			message: "#^Cannot call method fetch\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\Statement\\|int\\.$#"
+			count: 1
+			path: ../Classes/Updates/AvatarProviderUpdate.php
+
+		-
+			message: "#^Cannot call method fetchColumn\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\Statement\\|int\\.$#"
+			count: 1
+			path: ../Classes/Updates/AvatarProviderUpdate.php
+
+		-
+			message: "#^Cannot call method fetchColumn\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\Statement\\|int\\.$#"
+			count: 1
+			path: ../Classes/Updates/CategorySlugUpdate.php
+
+		-
+			message: "#^Cannot call method fetch\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\Statement\\|int\\.$#"
+			count: 2
+			path: ../Classes/Updates/CategorySlugUpdate.php
+
+		-
+			message: "#^Cannot call method fetch\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\Statement\\|int\\.$#"
+			count: 3
+			path: ../Classes/Updates/CategoryTypeUpdate.php
+
+		-
+			message: "#^Cannot call method fetchColumn\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\Statement\\|int\\.$#"
+			count: 1
+			path: ../Classes/Updates/CategoryTypeUpdate.php
+
+		-
+			message: "#^Cannot call method fetch\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\Statement\\|int\\.$#"
+			count: 1
+			path: ../Classes/Updates/DatabaseMonthYearUpdate.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:getQueryBuilderForTable\\(\\)\\.$#"
+			count: 1
+			path: ../Classes/Updates/DatabaseMonthYearUpdate.php
+
+		-
+			message: "#^Cannot call method fetch\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\Statement\\|int\\.$#"
+			count: 1
+			path: ../Classes/Updates/DatabasePublishDateUpdate.php
+
+		-
+			message: "#^Cannot call method fetchColumn\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\Statement\\|int\\.$#"
+			count: 1
+			path: ../Classes/Updates/DatabasePublishDateUpdate.php
+
+		-
+			message: "#^Cannot call method fetch\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\Statement\\|int\\.$#"
+			count: 2
+			path: ../Classes/Updates/FeaturedImageUpdate.php
+
+		-
+			message: "#^Cannot call method fetchColumn\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\Statement\\|int\\.$#"
+			count: 1
+			path: ../Classes/Updates/TagSlugUpdate.php
+
+		-
+			message: "#^Cannot call method fetch\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\Statement\\|int\\.$#"
+			count: 1
+			path: ../Classes/Updates/TagSlugUpdate.php
+

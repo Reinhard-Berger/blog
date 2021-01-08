@@ -17,6 +17,7 @@ use T3G\AgencyPack\Blog\Domain\Model\Category;
 use T3G\AgencyPack\Blog\Domain\Model\Post;
 use T3G\AgencyPack\Blog\Domain\Model\Tag;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -33,7 +34,7 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 class PostRepository extends Repository
 {
     /**
-     * @var array
+     * @var array<int,mixed>
      */
     protected $defaultConstraints = [];
 
@@ -42,6 +43,7 @@ class PostRepository extends Repository
      */
     public function initializeObject(): void
     {
+        /** @var Typo3QuerySettings $querySettings */
         $querySettings = $this->objectManager->get(Typo3QuerySettings::class);
         // don't add the pid constraint
         $querySettings->setRespectStoragePage(false);
@@ -49,7 +51,11 @@ class PostRepository extends Repository
         $query = $this->createQuery();
 
         $this->defaultConstraints[] = $query->equals('doktype', Constants::DOKTYPE_BLOG_POST);
-        if (GeneralUtility::makeInstance(Context::class)->getAspect('language')->getId() === 0) {
+        /** @var Context $context */
+        $context = GeneralUtility::makeInstance(Context::class);
+        /** @var LanguageAspect $languageAspect */
+        $languageAspect = $context->getAspect('language');
+        if ($languageAspect->getId() === 0) {
             $this->defaultConstraints[] = $query->logicalOr([
                 $query->equals('l18n_cfg', 0),
                 $query->equals('l18n_cfg', 2)
@@ -70,11 +76,11 @@ class PostRepository extends Repository
     }
 
     /**
-     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
      */
-    public function findAll()
+    public function findAll(): QueryResultInterface
     {
         return $this->getFindAllQuery()->execute();
     }
@@ -103,11 +109,11 @@ class PostRepository extends Repository
 
     /**
      * @param int $limit
-     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException#
      */
-    public function findAllWithLimit(int $limit)
+    public function findAllWithLimit(int $limit): QueryResultInterface
     {
         $query = $this->getFindAllQuery();
         $query->setLimit($limit);

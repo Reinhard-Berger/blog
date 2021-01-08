@@ -14,6 +14,7 @@ use T3G\AgencyPack\Blog\Constants;
 use T3G\AgencyPack\Blog\Domain\Model\Comment;
 use T3G\AgencyPack\Blog\Domain\Model\Post;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
@@ -29,7 +30,7 @@ class CommentRepository extends Repository
     protected $configurationManager;
 
     /**
-     * @var array
+     * @var array<string,mixed>
      */
     protected $settings;
 
@@ -53,7 +54,7 @@ class CommentRepository extends Repository
 
     /**
      * @param Post $post
-     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      * @throws \TYPO3\CMS\Core\Context\Exception\AspectNotFoundException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
      */
@@ -160,7 +161,7 @@ class CommentRepository extends Repository
 
     /**
      * @param QueryInterface $query
-     * @param array $constraints
+     * @param array<string,mixed> $constraints
      * @return array
      * @throws \TYPO3\CMS\Core\Context\Exception\AspectNotFoundException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
@@ -180,9 +181,12 @@ class CommentRepository extends Repository
             ? (int)$this->settings['comments']['respectPostLanguageId']
             : 0;
         if ($respectPostLanguageId) {
-            /** @noinspection PhpUnhandledExceptionInspection */
+            /** @var Context $context */
+            $context = GeneralUtility::makeInstance(Context::class);
+            /** @var LanguageAspect $languageAspect */
+            $languageAspect = $context->getAspect('language');
             $constraints[] = $query->logicalOr([
-                $query->equals('postLanguageId', GeneralUtility::makeInstance(Context::class)->getAspect('language')->getId()),
+                $query->equals('postLanguageId', $languageAspect->getId()),
                 $query->equals('postLanguageId', -1),
             ]);
         }
