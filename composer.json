@@ -92,7 +92,7 @@
         "typo3/cms-form": "^10.4 || 11.*.*@dev",
         "typo3/cms-frontend": "^10.4 || 11.*.*@dev",
         "typo3/cms-install": "^10.4 || 11.*.*@dev",
-        "typo3fluid/fluid": "^2.6",
+        "typo3fluid/fluid": "^3.0",
         "psr/http-client": "^1.0",
         "psr/http-factory": "^1.0"
     },
